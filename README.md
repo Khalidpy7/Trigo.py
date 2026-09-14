@@ -6,88 +6,55 @@ The original program uses Python's built-in `math` module and the third-party `t
 
 ---
 
-## 📁 Repository Structure
+# ⚠️ STEP 1 — READ BEFORE USING
+
+> [!WARNING]
+> This is a **simple educational calculator**, not a fully validated scientific calculator.
+
+Please read these limitations before running the program:
+
+### 1. Invalid input can terminate the program
+The current program expects correctly formatted input. Entering text where a number is expected can produce a Python error.
+
+### 2. Domain restrictions apply
+Inverse trigonometric functions have mathematical domain restrictions:
+
+- `arcsin(x)` requires `-1 ≤ x ≤ 1`
+- `arccos(x)` requires `-1 ≤ x ≤ 1`
+- `arcsec(x)` requires `|x| ≥ 1`
+- `arccosec(x)` requires `|x| ≥ 1`
+
+The current source does not explicitly validate these conditions before calling the corresponding `math` functions. fileciteturn0file0L90-L107
+
+### 3. Division by zero is possible
+`cot`, `sec`, and `cosec` use reciprocal operations. Certain angles can therefore cause a division-by-zero error. fileciteturn0file0L59-L67
+
+### 4. Precision is limited
+Several direct trigonometric results are rounded to **3 decimal places** before being displayed. fileciteturn0file0L50-L67
+
+### 5. Angle convention
+Direct trigonometric calculations use the supplied angle in **degrees** and convert it to radians internally. fileciteturn0file0L50-L58
+
+### 6. Inverse-function convention
+The program implements:
 
 ```text
-trigonometry-calculator/
-├── am.py
-├── README.md
-└── requirements.txt
+arccot(x)   → atan(1/x)
+arcsec(x)   → acos(1/x)
+arccosec(x) → asin(1/x)
 ```
 
-### Files
-
-| File | Purpose |
-|---|---|
-| `am.py` | Main calculator program |
-| `README.md` | Project documentation |
-| `requirements.txt` | Required third-party package |
+These represent the conventions chosen by this program and do not cover every possible inverse-trigonometric branch. fileciteturn0file0L100-L107
 
 ---
 
-## ✨ Features
-
-The program provides three calculation modes:
-
-### 1. Trigonometric Ratios
-
-You can calculate:
-
-- `sin θ`
-- `cos θ`
-- `tan θ`
-- `cot θ`
-- `sec θ`
-- `cosec θ`
-
-The program accepts the angle in **degrees**.
-
-Example:
-
-```text
-1 45
-```
-
-means:
-
-```text
-sin 45°
-```
-
-The six ratio choices are defined in the program's menu. fileciteturn0file0L38-L47
-
-### 2. Inverse Trigonometric Functions
-
-You can calculate:
-
-- `arcsin(x)`
-- `arccos(x)`
-- `arctan(x)`
-- `arccot(x)`
-- `arcsec(x)`
-- `arccosec(x)`
-
-The result is displayed in degrees. fileciteturn0file0L75-L84
-
-### 3. Pythagorean Calculation
-
-Enter the **height** and **base**, and the program calculates the hypotenuse using:
-
-```text
-hypotenuse = √(height² + base²)
-```
-
-The calculation is implemented near the end of the program. fileciteturn0file0L116-L126
-
----
-
-# 🛠️ Requirements
+# 🛠️ STEP 2 — REQUIREMENTS
 
 ## Python
 
 Install **Python 3.x**.
 
-Check whether Python is installed:
+Check your Python installation:
 
 ```bash
 python --version
@@ -99,29 +66,46 @@ or:
 python3 --version
 ```
 
-## Python Package
+## Required package
 
-The only external package required by the current source code is:
+Install:
 
 ```text
 termcolor
 ```
 
-The program imports it as:
+The program imports it with:
 
 ```python
 from termcolor import colored as tc
 ```
 
-while `math` is part of Python's standard library and does not need to be installed separately. fileciteturn0file0L1-L2
+Python's `math` module is built into Python, so it does **not** need a separate installation. fileciteturn0file0L1-L2
 
 ---
 
-# 📦 Installation
+# 📁 STEP 3 — REPOSITORY STRUCTURE
 
-Clone or download the repository, then open a terminal inside the project folder.
+```text
+trigonometry-calculator/
+├── am.py
+├── README.md
+└── requirements.txt
+```
 
-Install the dependency:
+| File | Purpose |
+|---|---|
+| `am.py` | Main calculator program |
+| `README.md` | Project documentation |
+| `requirements.txt` | Required third-party package |
+
+---
+
+# 📦 STEP 4 — INSTALL THE DEPENDENCY
+
+Open a terminal inside the project folder.
+
+Install `termcolor`:
 
 ```bash
 pip install termcolor
@@ -133,7 +117,7 @@ If your system uses `pip3`:
 pip3 install termcolor
 ```
 
-You can also install everything from `requirements.txt`:
+Or install from the included requirements file:
 
 ```bash
 pip install -r requirements.txt
@@ -141,7 +125,7 @@ pip install -r requirements.txt
 
 ---
 
-# ▶️ How to Execute
+# ▶️ STEP 5 — RUN THE PROGRAM
 
 Run:
 
@@ -157,13 +141,17 @@ python3 am.py
 
 The program first displays its banner and asks whether you want to continue. fileciteturn0file0L129-L131
 
-Enter:
+When prompted, enter:
 
 ```text
 y
 ```
 
-Then select one of the available modes:
+---
+
+# 🎮 STEP 6 — CHOOSE A CALCULATION MODE
+
+After starting the program, choose one of these modes:
 
 ```text
 (a) find trignometric ratio.
@@ -175,119 +163,148 @@ Then select one of the available modes:
 
 ---
 
-# 🧮 Examples
+# 🧮 STEP 7 — USE THE CALCULATOR
 
-## Example 1 — sin 45°
+## A. Trigonometric Ratios
 
-Select:
+Choose:
 
 ```text
 a
 ```
 
-Then choose:
+Available ratios:
+
+```text
+(1) sinθ
+(2) cosθ
+(3) tanθ
+(4) cotθ
+(5) secθ
+(6) cosecθ
+```
+
+fileciteturn0file0L38-L47
+
+### Example: sin 45°
+
+Enter:
 
 ```text
 1 45
 ```
 
-The program calculates the sine value using Python's `math.sin()` and degree-to-radian conversion. fileciteturn0file0L50-L52
+This means:
+
+```text
+sin 45°
+```
+
+The program converts the degree angle to radians and calculates the value using Python's trigonometric functions. fileciteturn0file0L50-L52
 
 ---
 
-## Example 2 — arcsin(0.5)
+## B. Find an Angle
 
-Select:
+Choose:
 
 ```text
 b
 ```
 
-Then enter:
+Available functions:
+
+```text
+(1) arcsin(x)
+(2) arccos(x)
+(3) arctan(x)
+(4) arccot(x)
+(5) arcsec(x)
+(6) arccosec(x)
+```
+
+fileciteturn0file0L75-L84
+
+### Example: arcsin(0.5)
+
+Enter:
 
 ```text
 1 0.5
 ```
 
-The program uses `math.asin()` and converts the result from radians to degrees. fileciteturn0file0L90-L92
+The result is displayed in degrees. fileciteturn0file0L90-L92
 
 ---
 
-## Example 3 — Hypotenuse
+## C. Pythagorean Calculation
 
-Select:
+Choose:
 
 ```text
 c
 ```
 
-Then enter:
+Enter:
+
+```text
+height base
+```
+
+For example:
 
 ```text
 3 4
 ```
 
-The result will be approximately:
+The program calculates:
+
+```text
+hypotenuse = √(height² + base²)
+```
+
+Result:
 
 ```text
 hypotenuse = 5.0
 ```
 
----
-
-# ⚠️ Limitations & Warnings
-
-> [!WARNING]
-> This is a **simple educational calculator**, not a fully validated scientific calculator.
-
-### 1. Invalid input can terminate the program
-
-The current program expects correctly formatted input. For example, entering text where a number is expected can produce a Python error.
-
-### 2. Domain restrictions apply
-
-Inverse trigonometric functions have mathematical domain restrictions.
-
-For example:
-
-- `arcsin(x)` requires `-1 ≤ x ≤ 1`
-- `arccos(x)` requires `-1 ≤ x ≤ 1`
-- `arcsec(x)` requires `|x| ≥ 1`
-- `arccosec(x)` requires `|x| ≥ 1`
-
-The current source does not explicitly validate these conditions before calling the corresponding `math` functions. fileciteturn0file0L90-L107
-
-### 3. Division by zero is possible
-
-`cot`, `sec`, and `cosec` are calculated using reciprocal operations. Values at which the corresponding denominator becomes zero can therefore cause a division-by-zero error. fileciteturn0file0L59-L67
-
-### 4. Precision is limited
-
-Several direct trigonometric results are rounded to **3 decimal places** before being displayed. fileciteturn0file0L50-L67
-
-### 5. Angle convention
-
-The direct trigonometric calculations convert the supplied degree value to radians before using Python's trigonometric functions. fileciteturn0file0L50-L58
-
-### 6. `arccot`, `arcsec`, and `arccosec` conventions
-
-The inverse functions for these ratios are implemented through reciprocal relationships:
-
-```text
-arccot(x)  → atan(1/x)
-arcsec(x)  → acos(1/x)
-arccosec(x) → asin(1/x)
-```
-
-These implementations should be treated as the program's chosen convention rather than a complete treatment of all possible inverse-trigonometric branches. fileciteturn0file0L100-L107
+The calculation is implemented using the square-root calculation in the source. fileciteturn0file0L116-L126
 
 ---
 
-# 🔐 Safety / Usage Note
+# 🔐 STEP 8 — USAGE NOTE
 
-This program performs mathematical calculations locally on your computer. It does not require an internet connection after the required Python package has been installed.
+This program performs mathematical calculations locally on your computer.
 
-Do not treat its output as authoritative when high numerical precision or specialized mathematical software is required.
+After `termcolor` has been installed, it does not require an internet connection to perform its calculations.
+
+Do not rely on its output when high numerical precision or specialized mathematical software is required.
+
+---
+
+# ✨ FEATURES
+
+The program provides three main calculation modes:
+
+1. **Trigonometric ratios**
+   - `sin θ`
+   - `cos θ`
+   - `tan θ`
+   - `cot θ`
+   - `sec θ`
+   - `cosec θ`
+
+2. **Inverse trigonometric functions**
+   - `arcsin(x)`
+   - `arccos(x)`
+   - `arctan(x)`
+   - `arccot(x)`
+   - `arcsec(x)`
+   - `arccosec(x)`
+
+3. **Pythagorean calculation**
+   - Calculates the hypotenuse from height and base.
 
 ---
 
@@ -431,7 +448,11 @@ check_user_permis()
 
 ---
 
-# 🚀 Possible Improvements
+
+
+---
+
+# 🚀 POSSIBLE IMPROVEMENTS
 
 Future versions could add:
 
@@ -449,6 +470,8 @@ Future versions could add:
 
 ---
 
-## 📜 License
+# 📜 LICENSE
 
-No license was specified in the supplied source. Add a license file before publishing the repository publicly if you want to define how others may use, modify, or redistribute the project.
+No license was specified in the supplied source.
+
+Add a license file before publishing the repository publicly if you want to define how others may use, modify, or redistribute the project.
