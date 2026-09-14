@@ -130,13 +130,13 @@ pip install -r requirements.txt
 Run:
 
 ```bash
-python am.py
+python Trigo.py
 ```
 
 or:
 
 ```bash
-python3 am.py
+python3 Trigo.py
 ```
 
 The program first displays its banner and asks whether you want to continue. fileciteturn0file0L129-L131
